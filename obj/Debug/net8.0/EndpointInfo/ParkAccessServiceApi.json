@@ -160,6 +160,10 @@
             "type": "string",
             "nullable": true
           },
+          "parkingMail": {
+            "type": "string",
+            "nullable": true
+          },
           "start": {
             "type": "string",
             "format": "date-time",

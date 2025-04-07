@@ -24,29 +24,30 @@ public class GraphService
         _logger = logger;
     }
 
-    // Méthode pour récupérer les événements d'un calendrier de ressource par email
-    public async Task<IEnumerable<EventData>> GetResourceCalendarEventsAsync(string resourceEmail)
+    public async Task<IEnumerable<EventData>> GetResourceCalendarEventsAsync(List<ParkingData> parkings)
     {
-        var result = await _graphClient.Users[resourceEmail].Calendar.Events.GetAsync();
-
         var eventDataList = new List<EventData>();
+        foreach (ParkingData parking in parkings)
+        {
+            var result = await _graphClient.Users[parking.Mail].Calendar.Events.GetAsync();
 
-        if (result?.Value != null)
-        {
-            foreach (var evt in result.Value)
+            if (result?.Value != null)
             {
-                //_logger.LogInformation("Event found: {eventId}, Start: {start}, End: {end}", evt.Id, evt.Start?.DateTime, evt.End?.DateTime);
-                eventDataList.Add(new EventData
+                foreach (var evt in result.Value)
                 {
-                    Id = evt.Id,
-                    Start = evt.Start?.DateTime != null ? DateTimeOffset.Parse(evt.Start.DateTime) : (DateTimeOffset?)null,
-                    End = evt.End?.DateTime != null ? DateTimeOffset.Parse(evt.End.DateTime) : (DateTimeOffset?)null,
-                });
+                    eventDataList.Add(new EventData
+                    {
+                        Id = evt.Id,
+                        ParkingMail = parking.Mail,
+                        Start = evt.Start?.DateTime != null ? DateTimeOffset.Parse(evt.Start.DateTime) : (DateTimeOffset?)null,
+                        End = evt.End?.DateTime != null ? DateTimeOffset.Parse(evt.End.DateTime) : (DateTimeOffset?)null,
+                    });
+                }
             }
-        }
-        else
-        {
-            _logger.LogWarning("No events found for resource: {resourceEmail}", resourceEmail);
+            else
+            {
+                _logger.LogWarning("No events found for resource: {resourceEmail}", parking.Mail);
+            }
         }
 
         return eventDataList;
