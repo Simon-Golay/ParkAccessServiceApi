@@ -1,0 +1,26 @@
+[
+  {
+    "Nom": "Parking Test",
+    "Ceff":  "Industrie",
+    "Mail": "parking.test@iceff.ch",
+    "Ip": "157.26.121.184"
+  },
+  {
+    "Nom": "Parking - Baptiste-Savoye",
+    "Ceff": "Industrie",
+    "Mail": "parking.bastiste-savoye@iceff.ch",
+    "Ip": "157.26.121.185"
+  },
+  {
+    "Nom": "Parking - Pierre-Jolissaint",
+    "Ceff": "Industrie",
+    "Mail": "parking.pierre-jolissaint@iceff.ch",
+    "Ip": "157.26.121.186"
+  },
+  {
+    "Nom": "Parking - Service Info",
+    "Ceff": "Industrie",
+    "Mail": "parking.service-info@iceff.ch",
+    "Ip": "157.26.121.187"
+  }
+]
