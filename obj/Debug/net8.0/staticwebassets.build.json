@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "L0gYmsB0cUrEhXBpNhfz+exzVQRVzy0g1ug2D91kNZY=",
+  "Source": "ParkAccessServiceApi",
+  "BasePath": "_content/ParkAccessServiceApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
