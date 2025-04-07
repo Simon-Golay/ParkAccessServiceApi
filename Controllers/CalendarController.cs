@@ -6,10 +6,12 @@ using System.Collections.Generic;
 public class CalendarController : ControllerBase
 {
     private readonly EventStoreService _eventStoreService;
+    private readonly ParkingStoreService _pargingStoreService;
 
-    public CalendarController(EventStoreService eventStoreService)
+    public CalendarController(EventStoreService eventStoreService, ParkingStoreService parkingStoreService)
     {
         _eventStoreService = eventStoreService;
+        _pargingStoreService = parkingStoreService;
     }
 
     [HttpGet("events")]
@@ -26,5 +28,19 @@ public class CalendarController : ControllerBase
         var events = _eventStoreService.GetNextEvent();
 
         return Ok(events);
+    }
+
+    [HttpGet("parkings")]
+    public ActionResult<IEnumerable<EventData>> GetParkings()
+    {
+        var events = _pargingStoreService.GetAllParkings();
+        return Ok(events);
+    }
+
+    [HttpPost("addparking")]
+    public ActionResult AddParking([FromBody] ParkingData newParking)
+    {
+        _pargingStoreService.AddNewParking(newParking);
+        return Ok("Parking added successfully.");
     }
 }
