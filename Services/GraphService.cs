@@ -62,6 +62,27 @@ public class GraphService
         return eventDataList;
     }
 
+    public async Task DeleteEventFromCalendarAsync(EventData eventToDelete)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(eventToDelete.ParkingMail) || !IsValidEmail(eventToDelete.ParkingMail))
+            {
+                _logger.LogWarning($"Email incorrect pour le parking: {eventToDelete.ParkingMail}");
+                return;
+            }
+
+            // Supprimer l'événement du calendrier de l'utilisateur
+            await _graphClient.Users[eventToDelete.ParkingMail].Calendar.Events[eventToDelete.Id].DeleteAsync();
+
+            _logger.LogInformation($"Event with Name {eventToDelete.Name} successfully deleted from calendar of {eventToDelete.ParkingMail}");
+        }
+        catch (ServiceException ex)
+        {
+            _logger.LogError($"Error deleting event from Outlook calendar: {ex.Message}");
+        }
+    }
+
     private bool IsValidEmail(string email)
     {
         try

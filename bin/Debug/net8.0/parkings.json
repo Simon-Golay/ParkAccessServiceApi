@@ -18,15 +18,9 @@
     "Ip": "157.26.121.186"
   },
   {
-    "Nom": "Parking - Service Info",
-    "Ceff": "Industrie",
-    "Mail": "parking.service-info@iceff.ch",
-    "Ip": "157.26.121.187"
-  },
-  {
-    "Nom": "etstse",
-    "Ceff": "Industrie",
-    "Mail": "testset",
-    "Ip": "setstest"
+    "nom": "Parking - Service Info",
+    "ceff": "Industrie",
+    "mail": "parking.service-info@iceff.ch",
+    "ip": "157.26.121.187"
   }
 ]

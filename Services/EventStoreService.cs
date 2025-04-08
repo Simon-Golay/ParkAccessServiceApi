@@ -7,13 +7,17 @@ public class EventStoreService
     private readonly ConcurrentDictionary<string, EventData> _eventStore = new();
     private readonly ILogger<EventStoreService> _logger;
 
-    public EventStoreService(ILogger<EventStoreService> logger)
+    private readonly GraphService _graphService;
+
+    public EventStoreService(ILogger<EventStoreService> logger, GraphService graphService)
     {
         _logger = logger;
+        _graphService = graphService;
     }
 
     public void UpdateEvents(IEnumerable<EventData> events)
     {
+        _eventStore.Clear();
         foreach (var evt in events)
         {
             if (evt.Start.HasValue)
@@ -70,8 +74,41 @@ public class EventStoreService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving events.");
+            _logger.LogError(ex, "Error retrieving event.");
             return null;
+        }
+    }
+
+    public EventData GetEventByName(string name)
+    {
+        try
+        {
+            EventData nextEvent = _eventStore.Values
+                .FirstOrDefault(e => e.Name == name);
+
+            if (nextEvent != null)
+            {
+                return nextEvent;
+            }
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving event.");
+            return null;
+        }
+    }
+
+    public void DeleteEvent(EventData eventToDelete)
+    {
+        try
+        {
+            _graphService.DeleteEventFromCalendarAsync(eventToDelete).Wait();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error deleting event.");
         }
     }
 }

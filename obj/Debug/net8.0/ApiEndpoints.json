@@ -17,6 +17,38 @@
   },
   {
     "ContainingType": "CalendarController",
+    "Method": "DeleteEvent",
+    "RelativePath": "api/calendar/deleteevent/{name}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CalendarController",
+    "Method": "DeleteParking",
+    "RelativePath": "api/calendar/deleteparking/{name}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CalendarController",
     "Method": "GetEvents",
     "RelativePath": "api/calendar/events",
     "HttpMethod": "GET",

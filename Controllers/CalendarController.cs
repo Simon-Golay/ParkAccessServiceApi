@@ -43,4 +43,30 @@ public class CalendarController : ControllerBase
         _pargingStoreService.AddNewParking(newParking);
         return Ok("Parking added successfully.");
     }
+
+    [HttpDelete("deleteevent/{name}")]
+    public ActionResult DeleteEvent(string name)
+    {
+        var eventToDelete = _eventStoreService.GetEventByName(name);
+        if (eventToDelete == null)
+        {
+            return NotFound("Event not found.");
+        }
+
+        _eventStoreService.DeleteEvent(eventToDelete);
+        return Ok("Event deleted successfully.");
+    }
+
+    [HttpDelete("deleteparking/{name}")]
+    public ActionResult DeleteParking(string name)
+    {
+        ParkingData parking = _pargingStoreService.GetParkingByName(name);
+        if (parking == null)
+        {
+            return NotFound("Parking not found.");
+        }
+
+        _pargingStoreService.DeleteParking(parking);
+        return Ok("Parking deleted successfully.");
+    }
 }

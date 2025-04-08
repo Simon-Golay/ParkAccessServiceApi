@@ -11,7 +11,7 @@ public class CalendarService : BackgroundService
     private readonly GraphService _graphService;
     private readonly EventStoreService _eventStoreService;
     private readonly ILogger<CalendarService> _logger;
-    private readonly TimeSpan _pollingInterval = TimeSpan.FromSeconds(10);
+    private readonly TimeSpan _pollingInterval = TimeSpan.FromSeconds(1);
     private readonly string _url = "http://157.26.121.168:7159/api/calendar/parkings";
     private readonly HttpClient _httpClient;
 
@@ -41,7 +41,7 @@ public class CalendarService : BackgroundService
                 {
                     var events = await _graphService.GetResourceCalendarEventsAsync(parkings);
                     _eventStoreService.UpdateEvents(events);
-                    _logger.LogInformation("Calendar events updated at: {time}", DateTimeOffset.Now);
+                    //_logger.LogInformation("Calendar events updated at: {time}", DateTimeOffset.Now);
                 }
             }
             catch (Exception ex)
