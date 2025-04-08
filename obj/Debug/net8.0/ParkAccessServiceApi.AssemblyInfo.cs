@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ParkAccessServiceApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+684b003ffaf6e12bacfcee065982a25c2fa8fe9b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4611f72342ce2f570a938f700daef01474d11abc")]
 [assembly: System.Reflection.AssemblyProductAttribute("ParkAccessServiceApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ParkAccessServiceApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

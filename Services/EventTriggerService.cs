@@ -68,7 +68,7 @@ public class EventTriggerService : BackgroundService
         {
             var client = _httpClientFactory.CreateClient();
 
-            string url = $"http://157.26.121.184/relay/0?turn=" + status.ToString();
+            string url = $"http://{evt.ParkingIp}/relay/0?turn=" + status.ToString();
             HttpResponseMessage response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)

@@ -27,35 +27,33 @@ public class GraphService
     public async Task<IEnumerable<EventData>> GetResourceCalendarEventsAsync(List<ParkingData> parkings)
     {
         var eventDataList = new List<EventData>();
+
+        for(int i = 0; i < parkings.Count(); i++)
+        {
+            if (string.IsNullOrWhiteSpace(parkings[i].Mail) || !IsValidEmail(parkings[i].Mail))
+            {
+                parkings.Remove(parkings[i]);
+            }
+        }
+
         foreach (ParkingData parking in parkings)
         {
-            if (string.IsNullOrWhiteSpace(parking.Mail) || !IsValidEmail(parking.Mail))
-            {
-                _logger.LogWarning($"Email incorrect pour le parking: {parking.Mail}");
-                continue;
-            }
-            try
-            {
-                var result = await _graphClient.Users[parking.Mail].Calendar.Events.GetAsync();
+            var result = await _graphClient.Users[parking.Mail].Calendar.Events.GetAsync();
 
-                if (result?.Value != null)
-                {
-                    foreach (var evt in result.Value)
-                    {
-                        eventDataList.Add(new EventData
-                        {
-                            Id = evt.Id,
-                            Name = evt.Subject,
-                            ParkingMail = parking.Mail,
-                            Start = evt.Start?.DateTime != null ? DateTimeOffset.Parse(evt.Start.DateTime) : (DateTimeOffset?)null,
-                            End = evt.End?.DateTime != null ? DateTimeOffset.Parse(evt.End.DateTime) : (DateTimeOffset?)null,
-                        });
-                    }
-                }
-            }
-            catch
+            if (result?.Value != null)
             {
-                _logger.LogInformation("A parking has incorrect values");
+                foreach (var evt in result.Value)
+                {
+                    eventDataList.Add(new EventData
+                    {
+                        Id = evt.Id,
+                        Name = evt.Subject,
+                        ParkingMail = parking.Mail,
+                        ParkingIp = parking.Ip,
+                        Start = evt.Start?.DateTime != null ? DateTimeOffset.Parse(evt.Start.DateTime) : (DateTimeOffset?)null,
+                        End = evt.End?.DateTime != null ? DateTimeOffset.Parse(evt.End.DateTime) : (DateTimeOffset?)null,
+                    });
+                }
             }
         }
 

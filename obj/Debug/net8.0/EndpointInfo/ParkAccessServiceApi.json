@@ -212,6 +212,10 @@
             "type": "string",
             "nullable": true
           },
+          "parkingIp": {
+            "type": "string",
+            "nullable": true
+          },
           "start": {
             "type": "string",
             "format": "date-time",
