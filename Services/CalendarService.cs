@@ -30,7 +30,11 @@ public class CalendarService : BackgroundService
         {
             try
             {
-                HttpResponseMessage response = await _httpClient.GetAsync(_url);
+                var request = new HttpRequestMessage(HttpMethod.Get, _url);
+                request.Headers.Add("X-Api-Key", "123456789");
+
+                HttpResponseMessage response = await _httpClient.SendAsync(request, stoppingToken);
+
                 response.EnsureSuccessStatusCode();
                 string json = await response.Content.ReadAsStringAsync();
 

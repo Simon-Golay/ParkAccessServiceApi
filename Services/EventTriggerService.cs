@@ -10,9 +10,7 @@ public class EventTriggerService : BackgroundService
     private readonly EventStoreService _eventStoreService;
     private readonly ILogger<EventTriggerService> _logger;
     private readonly IHttpClientFactory _httpClientFactory;
-    // Interval de vérification, par exemple toutes les 5 secondes
-    private readonly TimeSpan _pollingInterval = TimeSpan.FromSeconds(10);
-    // Durée de tolérance pour comparer l'heure (par exemple, 1 minute)
+    private readonly TimeSpan _pollingInterval = TimeSpan.FromSeconds(1);
     private readonly TimeSpan _tolerance = TimeSpan.FromSeconds(20);
     private string? status;
 
@@ -27,7 +25,6 @@ public class EventTriggerService : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            _logger.LogInformation("EventTriggerService started.");
             try
             {
                 var events = _eventStoreService.GetAllEvents();
