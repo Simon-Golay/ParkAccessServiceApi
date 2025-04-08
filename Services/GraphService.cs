@@ -29,28 +29,49 @@ public class GraphService
         var eventDataList = new List<EventData>();
         foreach (ParkingData parking in parkings)
         {
-            var result = await _graphClient.Users[parking.Mail].Calendar.Events.GetAsync();
-
-            if (result?.Value != null)
+            if (string.IsNullOrWhiteSpace(parking.Mail) || !IsValidEmail(parking.Mail))
             {
-                foreach (var evt in result.Value)
+                _logger.LogWarning($"Email incorrect pour le parking: {parking.Mail}");
+                continue;
+            }
+            try
+            {
+                var result = await _graphClient.Users[parking.Mail].Calendar.Events.GetAsync();
+
+                if (result?.Value != null)
                 {
-                    eventDataList.Add(new EventData
+                    foreach (var evt in result.Value)
                     {
-                        Id = evt.Id,
-                        ParkingMail = parking.Mail,
-                        Start = evt.Start?.DateTime != null ? DateTimeOffset.Parse(evt.Start.DateTime) : (DateTimeOffset?)null,
-                        End = evt.End?.DateTime != null ? DateTimeOffset.Parse(evt.End.DateTime) : (DateTimeOffset?)null,
-                    });
+                        eventDataList.Add(new EventData
+                        {
+                            Id = evt.Id,
+                            Name = evt.Subject,
+                            ParkingMail = parking.Mail,
+                            Start = evt.Start?.DateTime != null ? DateTimeOffset.Parse(evt.Start.DateTime) : (DateTimeOffset?)null,
+                            End = evt.End?.DateTime != null ? DateTimeOffset.Parse(evt.End.DateTime) : (DateTimeOffset?)null,
+                        });
+                    }
                 }
             }
-            else
+            catch
             {
-                _logger.LogWarning("No events found for resource: {resourceEmail}", parking.Mail);
+                _logger.LogInformation("A parking has incorrect values");
             }
         }
 
         return eventDataList;
     }
 
+    private bool IsValidEmail(string email)
+    {
+        try
+        {
+            var mail = new System.Net.Mail.MailAddress(email);
+            return mail.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
+    }
 }

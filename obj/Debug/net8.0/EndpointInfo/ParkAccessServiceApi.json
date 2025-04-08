@@ -160,6 +160,10 @@
             "type": "string",
             "nullable": true
           },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
           "parkingMail": {
             "type": "string",
             "nullable": true
