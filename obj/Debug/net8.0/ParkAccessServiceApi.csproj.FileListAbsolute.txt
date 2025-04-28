@@ -152,3 +152,4 @@ C:\Users\cp-23sig\Desktop\API\ParkAccessServiceApi\obj\Debug\net8.0\ParkAccessSe
 C:\Users\cp-23sig\Desktop\API\ParkAccessServiceApi\obj\Debug\net8.0\ParkAccessServiceApi.genruntimeconfig.cache
 C:\Users\cp-23sig\Desktop\API\ParkAccessServiceApi\obj\Debug\net8.0\ref\ParkAccessServiceApi.dll
 C:\Users\cp-23sig\Desktop\API\ParkAccessServiceApi\bin\Debug\net8.0\parkings.json
+C:\Users\cp-23sig\Desktop\API\ParkAccessServiceApi\bin\Debug\net8.0\Newtonsoft.Json.dll

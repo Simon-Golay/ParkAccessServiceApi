@@ -39,6 +39,7 @@ builder.Services.AddSingleton<ParkingStoreService>();
 builder.Services.AddHostedService<CalendarService>();
 builder.Services.AddHttpClient();
 builder.Services.AddHostedService<EventTriggerService>();
+builder.Services.AddHostedService<OnOffService>();
 
 var app = builder.Build();
 

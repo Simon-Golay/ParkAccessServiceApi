@@ -43,7 +43,7 @@ public class CalendarService : BackgroundService
 
                 if (parkings != null)
                 {
-                    var events = await _graphService.GetResourceCalendarEventsAsync(parkings);
+                    var events = await _graphService.GetCalendarEventsAsync(parkings);
                     _eventStoreService.UpdateEvents(events);
                     //_logger.LogInformation("Calendar events updated at: {time}", DateTimeOffset.Now);
                 }

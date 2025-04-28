@@ -37,6 +37,13 @@ public class CalendarController : ControllerBase
         return Ok(events);
     }
 
+    [HttpPost("addevent")]
+    public ActionResult AddParking([FromBody] EventData newEvent)
+    {
+        _eventStoreService.AddNewEvent(newEvent);
+        return Ok("Event added successfully.");
+    }
+
     [HttpPost("addparking")]
     public ActionResult AddParking([FromBody] ParkingData newParking)
     {

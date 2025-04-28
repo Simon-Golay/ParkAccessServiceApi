@@ -79,6 +79,20 @@ public class EventStoreService
         }
     }
 
+    public void AddNewEvent(EventData newEvent)
+    {
+        try
+        {
+            _graphService.NewCalendarEventAsync(newEvent).Wait();
+
+            _eventStore.TryAdd(newEvent.Id, newEvent);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error adding new event.");
+        }
+    }
+
     public EventData GetEventByName(string name)
     {
         try

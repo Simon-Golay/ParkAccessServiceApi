@@ -2,6 +2,22 @@
   {
     "ContainingType": "CalendarController",
     "Method": "AddParking",
+    "RelativePath": "api/calendar/addevent",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newEvent",
+        "Type": "EventData",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CalendarController",
+    "Method": "AddParking",
     "RelativePath": "api/calendar/addparking",
     "HttpMethod": "POST",
     "IsController": true,

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "s4z+Fi9rDno=",
+  "dgSpecHash": "aubMtBp35Is=",
   "success": true,
   "projectFilePath": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\ParkAccessServiceApi.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,7 @@
     "C:\\Users\\cp-23sig\\.nuget\\packages\\microsoft.kiota.serialization.multipart\\1.17.1\\microsoft.kiota.serialization.multipart.1.17.1.nupkg.sha512",
     "C:\\Users\\cp-23sig\\.nuget\\packages\\microsoft.kiota.serialization.text\\1.17.1\\microsoft.kiota.serialization.text.1.17.1.nupkg.sha512",
     "C:\\Users\\cp-23sig\\.nuget\\packages\\microsoft.openapi\\1.6.14\\microsoft.openapi.1.6.14.nupkg.sha512",
+    "C:\\Users\\cp-23sig\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\cp-23sig\\.nuget\\packages\\std.uritemplate\\2.0.1\\std.uritemplate.2.0.1.nupkg.sha512",
     "C:\\Users\\cp-23sig\\.nuget\\packages\\swashbuckle.aspnetcore\\6.6.2\\swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
     "C:\\Users\\cp-23sig\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.6.2\\swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",

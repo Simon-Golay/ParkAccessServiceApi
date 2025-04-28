@@ -1,10 +1,14 @@
-﻿using Azure.Identity;
+﻿using Azure.Core;
+using Azure.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Graph;
 using Microsoft.Graph.Models;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Text;
 
 public class GraphService
 {
@@ -12,19 +16,23 @@ public class GraphService
 
     private readonly ILogger<GraphService> _logger;
 
+    private string _clientId;
+    private string _clientSecret;
+    private string _tenantId;
+
     public GraphService(IConfiguration configuration, ILogger<GraphService> logger)
     {
-        var clientId = configuration["AzureAd:ClientId"];
-        var clientSecret = configuration["AzureAd:ClientSecret"];
-        var tenantId = configuration["AzureAd:TenantId"];
+        _clientId = configuration["AzureAd:ClientId"];
+        _clientSecret = configuration["AzureAd:ClientSecret"];
+        _tenantId = configuration["AzureAd:TenantId"];
 
-        var clientSecretCredential = new ClientSecretCredential(tenantId, clientId, clientSecret);
+        var clientSecretCredential = new ClientSecretCredential(_tenantId, _clientId, _clientSecret);
         _graphClient = new GraphServiceClient(clientSecretCredential, new[] { "https://graph.microsoft.com/.default" });
 
         _logger = logger;
     }
 
-    public async Task<IEnumerable<EventData>> GetResourceCalendarEventsAsync(List<ParkingData> parkings)
+    public async Task<IEnumerable<EventData>> GetCalendarEventsAsync(List<ParkingData> parkings)
     {
         var eventDataList = new List<EventData>();
 
@@ -50,14 +58,48 @@ public class GraphService
                         Name = evt.Subject,
                         ParkingMail = parking.Mail,
                         ParkingIp = parking.Ip,
-                        Start = evt.Start?.DateTime != null ? DateTimeOffset.Parse(evt.Start.DateTime) : (DateTimeOffset?)null,
-                        End = evt.End?.DateTime != null ? DateTimeOffset.Parse(evt.End.DateTime) : (DateTimeOffset?)null,
+                        Start = evt.Start.DateTime != null ? DateTimeOffset.Parse(evt.Start.DateTime) : (DateTimeOffset?)null,
+                        End = evt.End.DateTime != null ? DateTimeOffset.Parse(evt.End.DateTime) : (DateTimeOffset?)null,
                     });
                 }
             }
         }
 
         return eventDataList;
+    }
+
+    public async Task NewCalendarEventAsync(EventData newEvent)
+    {
+        var accessToken = await GetAccessToken(_tenantId, _clientId, _clientSecret);
+        var httpClient = new HttpClient();
+        httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
+        var graphPayload = new
+        {
+            subject = newEvent.Name,
+            start = new { dateTime = newEvent.Start.Value.ToString("yyyy-MM-ddTHH:mm:ss"), timeZone = "Europe/Paris" },
+            end = new { dateTime = newEvent.End.Value.ToString("yyyy-MM-ddTHH:mm:ss"), timeZone = "Europe/Paris" },
+            location = new { displayName = newEvent.ParkingMail }
+        };
+
+        var json = JsonConvert.SerializeObject(graphPayload);
+
+        using var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var url = $"https://graph.microsoft.com/v1.0/users/{newEvent.ParkingMail}/events";
+        var response = await httpClient.PostAsync(url, content);
+    }
+
+    static async Task<string> GetAccessToken(string tenantId, string clientId, string clientSecret)
+    {
+        var app = ConfidentialClientApplicationBuilder.Create(clientId)
+            .WithClientSecret(clientSecret)
+            .WithAuthority($"https://login.microsoftonline.com/{tenantId}")
+            .Build();
+
+        string[] scopes = { "https://graph.microsoft.com/.default" };
+        var authResult = await app.AcquireTokenForClient(scopes).ExecuteAsync();
+        return authResult.AccessToken;
     }
 
     public async Task DeleteEventFromCalendarAsync(EventData eventToDelete)
