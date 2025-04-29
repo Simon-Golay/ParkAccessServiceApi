@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using ParkAccessServiceApi.Settings;
-using System;
-using System.Threading.Tasks;
+﻿using ParkAccessServiceApi.Settings;
 
 public class ApiKeyMiddleware
 {

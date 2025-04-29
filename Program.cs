@@ -1,6 +1,6 @@
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using ParkAccessServiceApi.Settings;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 

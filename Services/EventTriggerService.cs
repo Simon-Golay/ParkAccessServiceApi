@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using ParkAccessServiceApi.Settings;
-using System;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using ParkAccessServiceApi.Settings;
 
 public class EventTriggerService : BackgroundService
 {
