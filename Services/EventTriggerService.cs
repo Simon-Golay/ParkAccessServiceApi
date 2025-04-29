@@ -50,7 +50,7 @@ public class EventTriggerService : BackgroundService
                 _logger.LogError(ex, "Error while checking events");
             }
 
-            await Task.Delay(_apiSettings.IntervalToControllIncomingEvent, stoppingToken);
+            await Task.Delay(_apiSettings.IntervalToControllIncomingEventInSeconds, stoppingToken);
         }
     }
 
