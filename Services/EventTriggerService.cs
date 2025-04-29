@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ParkAccessServiceApi.Settings;
 using System;
 using System.Net.Http;
 using System.Threading;
@@ -7,15 +8,15 @@ using System.Threading.Tasks;
 
 public class EventTriggerService : BackgroundService
 {
+    private readonly ApiSettings _apiSettings;
     private readonly EventStoreService _eventStoreService;
     private readonly ILogger<EventTriggerService> _logger;
     private readonly IHttpClientFactory _httpClientFactory;
-    private readonly TimeSpan _pollingInterval = TimeSpan.FromSeconds(1);
-    private readonly TimeSpan _tolerance = TimeSpan.FromSeconds(20);
     private string? status;
 
-    public EventTriggerService(EventStoreService eventStoreService, IHttpClientFactory httpClientFactory, ILogger<EventTriggerService> logger)
+    public EventTriggerService(ApiSettings apiSettings, EventStoreService eventStoreService, IHttpClientFactory httpClientFactory, ILogger<EventTriggerService> logger)
     {
+        _apiSettings = apiSettings;
         _eventStoreService = eventStoreService;
         _httpClientFactory = httpClientFactory;
         _logger = logger;
@@ -35,17 +36,16 @@ public class EventTriggerService : BackgroundService
                     if (evt.Start.HasValue && evt.End.HasValue)
                     {
                         status = "";
-                        if (Math.Abs((evt.Start.Value - now).TotalSeconds) < _tolerance.TotalSeconds)
+                        if (Math.Abs((evt.Start.Value - now).TotalSeconds) < _apiSettings.TolerenceToDetectEventInSeconds)
                         {
                             status = "on";
                         }
-                        if (Math.Abs((evt.End.Value - now).TotalSeconds) < _tolerance.TotalSeconds)
+                        if (Math.Abs((evt.End.Value - now).TotalSeconds) < _apiSettings.TolerenceToDetectEventInSeconds)
                         {
                             status = "off";
                         }
                         if(status != "")
                         {
-                            _logger.LogInformation("Triggering HTTP request executed");
                             await TriggerHttpRequestAsync(evt, stoppingToken, status);
                         }
                     }
@@ -56,10 +56,8 @@ public class EventTriggerService : BackgroundService
                 _logger.LogError(ex, "Error while checking events");
             }
 
-            await Task.Delay(_pollingInterval, stoppingToken);
+            await Task.Delay(_apiSettings.IntervalToControllIncomingEvent, stoppingToken);
         }
-
-        _logger.LogInformation("EventTriggerService stopping.");
     }
 
     private async Task TriggerHttpRequestAsync(EventData evt, CancellationToken cancellationToken, string status)
@@ -70,15 +68,6 @@ public class EventTriggerService : BackgroundService
 
             string url = $"http://{evt.ParkingIp}/relay/0?turn=" + status.ToString();
             HttpResponseMessage response = await client.GetAsync(url);
-
-            if (response.IsSuccessStatusCode)
-            {
-                _logger.LogInformation("HTTP request triggered successfully");
-            }
-            else
-            {
-                _logger.LogWarning("HTTP request failed for event {EventId} with status {StatusCode}", evt.Id, response.StatusCode);
-            }
         }
         catch (Exception ex)
         {

@@ -111,11 +111,7 @@ public class GraphService
                 _logger.LogWarning($"Email incorrect pour le parking: {eventToDelete.ParkingMail}");
                 return;
             }
-
-            // Supprimer l'événement du calendrier de l'utilisateur
             await _graphClient.Users[eventToDelete.ParkingMail].Calendar.Events[eventToDelete.Id].DeleteAsync();
-
-            _logger.LogInformation($"Event with Name {eventToDelete.Name} successfully deleted from calendar of {eventToDelete.ParkingMail}");
         }
         catch (ServiceException ex)
         {

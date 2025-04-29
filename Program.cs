@@ -1,6 +1,14 @@
 using Microsoft.OpenApi.Models;
+using ParkAccessServiceApi.Settings;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<ApiSettings>(
+    builder.Configuration.GetSection("ApiSettings"));
+
+builder.Services.AddSingleton(sp =>
+    sp.GetRequiredService<IOptions<ApiSettings>>().Value);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -12,7 +20,7 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
-        Name = "X-Api-Key",
+        Name = "ApiKey",
         Type = SecuritySchemeType.ApiKey,
         Description = "API key required to access this API"
     });
@@ -39,7 +47,7 @@ builder.Services.AddSingleton<ParkingStoreService>();
 builder.Services.AddHostedService<CalendarService>();
 builder.Services.AddHttpClient();
 builder.Services.AddHostedService<EventTriggerService>();
-builder.Services.AddHostedService<OnOffService>();
+
 
 var app = builder.Build();
 
@@ -54,4 +62,5 @@ app.UseMiddleware<ApiKeyMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
 app.Run();

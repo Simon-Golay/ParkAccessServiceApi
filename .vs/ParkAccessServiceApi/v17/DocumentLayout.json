@@ -3,44 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\services\\onoffservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:services\\onoffservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\services\\eventtriggerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:services\\eventtriggerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\settings\\apisettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:settings\\apisettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\services\\calendarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:services\\calendarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\services\\eventstoreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:services\\eventstoreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\eventdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:eventdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\services\\graphservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:services\\graphservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\controllers\\calendarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:controllers\\calendarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\services\\eventtriggerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:services\\eventtriggerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\services\\parkingstoreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:services\\parkingstoreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|c:\\users\\cp-23sig\\desktop\\api\\parkaccessserviceapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B03B4BA4-7D2C-423C-8CDB-A730DB598149}|ParkAccessServiceApi.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -59,131 +39,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAiwCAAAAAHAAAAAAAAAA==",
+              "Title": "ApiSettings.cs",
+              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Settings\\ApiSettings.cs",
+              "RelativeDocumentMoniker": "Settings\\ApiSettings.cs",
+              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Settings\\ApiSettings.cs",
+              "RelativeToolTip": "Settings\\ApiSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T12:00:21.843Z",
+              "WhenOpened": "2025-04-29T08:36:00.801Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EventTriggerService.cs",
-              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\EventTriggerService.cs",
-              "RelativeDocumentMoniker": "Services\\EventTriggerService.cs",
-              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\EventTriggerService.cs",
-              "RelativeToolTip": "Services\\EventTriggerService.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwEQAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T11:50:40.844Z",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-29T08:35:07.028Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "OnOffService.cs",
-              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\OnOffService.cs",
-              "RelativeDocumentMoniker": "Services\\OnOffService.cs",
-              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\OnOffService.cs",
-              "RelativeToolTip": "Services\\OnOffService.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowC0AAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T11:48:42.233Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "CalendarService.cs",
               "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\CalendarService.cs",
               "RelativeDocumentMoniker": "Services\\CalendarService.cs",
               "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\CalendarService.cs",
               "RelativeToolTip": "Services\\CalendarService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAABjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T11:50:25.085Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-28T07:46:55.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EventData.cs",
-              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\EventData.cs",
-              "RelativeDocumentMoniker": "EventData.cs",
-              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\EventData.cs",
-              "RelativeToolTip": "EventData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "EventTriggerService.cs",
+              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\EventTriggerService.cs",
+              "RelativeDocumentMoniker": "Services\\EventTriggerService.cs",
+              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\EventTriggerService.cs",
+              "RelativeToolTip": "Services\\EventTriggerService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEUAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T06:24:20.533Z",
+              "WhenOpened": "2025-04-29T08:40:18.426Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CalendarController.cs",
-              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Controllers\\CalendarController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CalendarController.cs",
-              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Controllers\\CalendarController.cs",
-              "RelativeToolTip": "Controllers\\CalendarController.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAwwCcAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T12:36:47.732Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EventStoreService.cs",
-              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\EventStoreService.cs",
-              "RelativeDocumentMoniker": "Services\\EventStoreService.cs",
-              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\EventStoreService.cs",
-              "RelativeToolTip": "Services\\EventStoreService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFMAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T05:35:28.892Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "GraphService.cs",
               "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\GraphService.cs",
               "RelativeDocumentMoniker": "Services\\GraphService.cs",
               "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\GraphService.cs",
               "RelativeToolTip": "Services\\GraphService.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAowE4AAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswHMAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T11:51:58.796Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ParkingStoreService.cs",
-              "DocumentMoniker": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\ParkingStoreService.cs",
-              "RelativeDocumentMoniker": "Services\\ParkingStoreService.cs",
-              "ToolTip": "C:\\Users\\cp-23sig\\Desktop\\API\\ParkAccessServiceApi\\Services\\ParkingStoreService.cs",
-              "RelativeToolTip": "Services\\ParkingStoreService.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAwwD0AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T05:45:22.261Z",
+              "WhenOpened": "2025-04-29T08:40:33.612Z",
               "EditorCaption": ""
             }
           ]

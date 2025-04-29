@@ -1,26 +1,20 @@
-﻿using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Net.Http;
+﻿using ParkAccessServiceApi.Settings;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 
 public class CalendarService : BackgroundService
 {
+    private readonly ApiSettings _apiSettings;
     private readonly GraphService _graphService;
     private readonly EventStoreService _eventStoreService;
     private readonly ILogger<CalendarService> _logger;
-    private readonly TimeSpan _pollingInterval = TimeSpan.FromSeconds(1);
-    private readonly string _url = "http://157.26.121.168:7159/api/calendar/parkings";
     private readonly HttpClient _httpClient;
 
-    public CalendarService(GraphService graphService, EventStoreService eventStoreService, ILogger<CalendarService> logger)
+    public CalendarService(ApiSettings apiSettings, GraphService graphService, EventStoreService eventStoreService, ILogger<CalendarService> logger)
     {
+        _apiSettings = apiSettings;
         _graphService = graphService;
         _eventStoreService = eventStoreService;
         _logger = logger;
-
         _httpClient = new HttpClient();
     }
 
@@ -30,8 +24,9 @@ public class CalendarService : BackgroundService
         {
             try
             {
+                string _url = $"{_apiSettings.BaseUrl}/parkings";
                 var request = new HttpRequestMessage(HttpMethod.Get, _url);
-                request.Headers.Add("X-Api-Key", "123456789");
+                request.Headers.Add("ApiKey", _apiSettings.ApiKey);
 
                 HttpResponseMessage response = await _httpClient.SendAsync(request, stoppingToken);
 
@@ -45,15 +40,14 @@ public class CalendarService : BackgroundService
                 {
                     var events = await _graphService.GetCalendarEventsAsync(parkings);
                     _eventStoreService.UpdateEvents(events);
-                    //_logger.LogInformation("Calendar events updated at: {time}", DateTimeOffset.Now);
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while polling calendar events");
+                _logger.LogError(ex, "Error while ExecuteAsync");
             }
 
-            await Task.Delay(_pollingInterval, stoppingToken);
+            await Task.Delay(_apiSettings.IntervalToGetEventsFromCalendarInSeconds, stoppingToken);
         }
     }
 }

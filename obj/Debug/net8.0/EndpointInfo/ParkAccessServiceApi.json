@@ -287,7 +287,7 @@
       "ApiKey": {
         "type": "apiKey",
         "description": "API key required to access this API",
-        "name": "X-Api-Key",
+        "name": "ApiKey",
         "in": "header"
       }
     }
