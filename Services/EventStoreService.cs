@@ -45,7 +45,7 @@ public class EventStoreService
         }
     }
 
-    public EventData GetNextEvent()
+    public EventData? GetNextEvent()
     {
         try
         {
@@ -62,7 +62,7 @@ public class EventStoreService
 
             var nextEvent = _eventStore.Values
                 .Where(e => e.Start.HasValue && e.Start.Value > now)
-                .OrderBy(e => e.Start.Value)
+                .OrderBy(e => e.Start!.Value)
                 .FirstOrDefault();
 
             if (nextEvent != null)
@@ -93,11 +93,11 @@ public class EventStoreService
         }
     }
 
-    public EventData GetEventByName(string name)
+    public EventData? GetEventByName(string name)
     {
         try
         {
-            EventData nextEvent = _eventStore.Values
+            EventData? nextEvent = _eventStore.Values
                 .FirstOrDefault(e => e.Name == name);
 
             if (nextEvent != null)

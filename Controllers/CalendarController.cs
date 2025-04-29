@@ -67,7 +67,7 @@ public class CalendarController : ControllerBase
     [HttpDelete("deleteparking/{name}")]
     public ActionResult DeleteParking(string name)
     {
-        ParkingData parking = _pargingStoreService.GetParkingByName(name);
+        ParkingData? parking = _pargingStoreService.GetParkingByName(name);
         if (parking == null)
         {
             return NotFound("Parking not found.");

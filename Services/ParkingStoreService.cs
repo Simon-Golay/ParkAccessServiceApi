@@ -71,11 +71,11 @@ public class ParkingStoreService
         }
     }
 
-    public ParkingData GetParkingByName(string name)
+    public ParkingData? GetParkingByName(string name)
     {
         try
         {
-            ParkingData parking = _parkingStore.Values
+            ParkingData? parking = _parkingStore.Values
                 .FirstOrDefault(e => e.Nom == name);
 
             if (parking != null)

@@ -22,9 +22,9 @@ public class GraphService
 
     public GraphService(IConfiguration configuration, ILogger<GraphService> logger)
     {
-        _clientId = configuration["AzureAd:ClientId"];
-        _clientSecret = configuration["AzureAd:ClientSecret"];
-        _tenantId = configuration["AzureAd:TenantId"];
+        _clientId = configuration["AzureAd:ClientId"] ?? throw new ArgumentNullException("ClientId is not configured.");
+        _clientSecret = configuration["AzureAd:ClientSecret"] ?? throw new ArgumentNullException("ClientSecret is not configured.");
+        _tenantId = configuration["AzureAd:TenantId"] ?? throw new ArgumentNullException("TenantId is not configured.");
 
         var clientSecretCredential = new ClientSecretCredential(_tenantId, _clientId, _clientSecret);
         _graphClient = new GraphServiceClient(clientSecretCredential, new[] { "https://graph.microsoft.com/.default" });
@@ -54,12 +54,12 @@ public class GraphService
                 {
                     eventDataList.Add(new EventData
                     {
-                        Id = evt.Id,
-                        Name = evt.Subject,
+                        Id = evt.Id!,
+                        Name = evt.Subject!,
                         ParkingMail = parking.Mail,
                         ParkingIp = parking.Ip,
-                        Start = evt.Start.DateTime != null ? DateTimeOffset.Parse(evt.Start.DateTime) : (DateTimeOffset?)null,
-                        End = evt.End.DateTime != null ? DateTimeOffset.Parse(evt.End.DateTime) : (DateTimeOffset?)null,
+                        Start = evt.Start!.DateTime != null ? DateTimeOffset.Parse(evt.Start.DateTime) : (DateTimeOffset?)null,
+                        End = evt.End!.DateTime != null ? DateTimeOffset.Parse(evt.End.DateTime) : (DateTimeOffset?)null,
                     });
                 }
             }
@@ -77,8 +77,8 @@ public class GraphService
         var graphPayload = new
         {
             subject = newEvent.Name,
-            start = new { dateTime = newEvent.Start.Value.ToString("yyyy-MM-ddTHH:mm:ss"), timeZone = "Europe/Paris" },
-            end = new { dateTime = newEvent.End.Value.ToString("yyyy-MM-ddTHH:mm:ss"), timeZone = "Europe/Paris" },
+            start = new { dateTime = newEvent.Start!.Value.ToString("yyyy-MM-ddTHH:mm:ss"), timeZone = "Europe/Paris" },
+            end = new { dateTime = newEvent.End!.Value.ToString("yyyy-MM-ddTHH:mm:ss"), timeZone = "Europe/Paris" },
             location = new { displayName = newEvent.ParkingMail }
         };
 
