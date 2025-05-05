@@ -31,6 +31,13 @@ public class CalendarController : ControllerBase
         return Ok(events);
     }
 
+    [HttpGet("history")]
+    public ActionResult<IEnumerable<History>> GetHistory()
+    {
+        var history = _historyStoreService.GetHistory();
+        return Ok(history);
+    }
+
     [HttpPost("addevent")]
     public ActionResult AddParking([FromBody] EventData newEvent)
     {
@@ -69,13 +76,6 @@ public class CalendarController : ControllerBase
 
         _pargingStoreService.DeleteParking(parking);
         return Ok("Parking deleted successfully.");
-    }
-
-    [HttpGet("gethistory")]
-    public ActionResult<IEnumerable<History>> GetHistory()
-    {
-        var history = _historyStoreService.GetHistory();
-        return Ok(history);
     }
 
     [HttpDelete("deletehistory")]
