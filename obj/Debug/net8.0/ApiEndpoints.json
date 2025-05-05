@@ -49,6 +49,16 @@
   },
   {
     "ContainingType": "CalendarController",
+    "Method": "DeleteHistory",
+    "RelativePath": "api/calendar/deletehistory",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CalendarController",
     "Method": "DeleteParking",
     "RelativePath": "api/calendar/deleteparking/{name}",
     "HttpMethod": "DELETE",
@@ -85,15 +95,15 @@
   },
   {
     "ContainingType": "CalendarController",
-    "Method": "GetNextEvent",
-    "RelativePath": "api/calendar/nextevent",
+    "Method": "GetHistory",
+    "RelativePath": "api/calendar/gethistory",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[EventData, ParkAccessServiceApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ParkAccessServiceApi.Class.History, ParkAccessServiceApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

@@ -44,6 +44,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddSingleton<GraphService>();
 builder.Services.AddSingleton<EventStoreService>();
 builder.Services.AddSingleton<ParkingStoreService>();
+builder.Services.AddSingleton<HistoryStoreService>();
 builder.Services.AddHostedService<CalendarService>();
 builder.Services.AddHttpClient();
 builder.Services.AddHostedService<EventTriggerService>();

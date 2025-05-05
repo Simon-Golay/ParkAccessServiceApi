@@ -1,4 +1,6 @@
-﻿using System.Collections.Concurrent;
+﻿using Microsoft.Graph.Models;
+using ParkAccessServiceApi.Class;
+using System.Collections.Concurrent;
 using System.Text.Json;
 
 public class ParkingStoreService
@@ -62,6 +64,18 @@ public class ParkingStoreService
 
             var updatedJson = JsonSerializer.Serialize(parkings, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText("parkings.json", updatedJson);
+
+            var json2 = File.ReadAllText("history.json");
+            var history = JsonSerializer.Deserialize<List<History>>(json2) ?? new List<History>();
+            var newHistory = new History(DateTime.Now, $"Le parking \"{newParking.Nom}\" a été ajouté avec succès");
+            history.Add(newHistory);
+
+            var newJson = JsonSerializer.Serialize(history, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            });
+            File.WriteAllText("history.json", newJson);
         }
         catch (Exception ex)
         {
@@ -105,6 +119,18 @@ public class ParkingStoreService
 
             var updatedJson = JsonSerializer.Serialize(parkings, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText("parkings.json", updatedJson);
+
+            var json2 = File.ReadAllText("history.json");
+            var history = JsonSerializer.Deserialize<List<History>>(json2) ?? new List<History>();
+            var newHistory = new History(DateTime.Now, $"Le parking \"{parkingToDelete.Nom}\" a été supprimé avec succès");
+            history.Add(newHistory);
+
+            var newJson = JsonSerializer.Serialize(history, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            });
+            File.WriteAllText("history.json", newJson);
         }
     }
 }

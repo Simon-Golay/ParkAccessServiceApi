@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ParkAccessServiceApi.Class;
 
 [Route("api/calendar")]
 [ApiController]
@@ -6,25 +7,19 @@ public class CalendarController : ControllerBase
 {
     private readonly EventStoreService _eventStoreService;
     private readonly ParkingStoreService _pargingStoreService;
+    private readonly HistoryStoreService _historyStoreService;
 
-    public CalendarController(EventStoreService eventStoreService, ParkingStoreService parkingStoreService)
+    public CalendarController(EventStoreService eventStoreService, ParkingStoreService parkingStoreService, HistoryStoreService historyStoreService)
     {
         _eventStoreService = eventStoreService;
         _pargingStoreService = parkingStoreService;
+        _historyStoreService = historyStoreService;
     }
 
     [HttpGet("events")]
     public ActionResult<IEnumerable<EventData>> GetEvents()
     {
         var events = _eventStoreService.GetAllEvents();
-
-        return Ok(events);
-    }
-
-    [HttpGet("nextevent")]
-    public ActionResult<IEnumerable<EventData>> GetNextEvent()
-    {
-        var events = _eventStoreService.GetNextEvent();
 
         return Ok(events);
     }
@@ -74,5 +69,19 @@ public class CalendarController : ControllerBase
 
         _pargingStoreService.DeleteParking(parking);
         return Ok("Parking deleted successfully.");
+    }
+
+    [HttpGet("gethistory")]
+    public ActionResult<IEnumerable<History>> GetHistory()
+    {
+        var history = _historyStoreService.GetHistory();
+        return Ok(history);
+    }
+
+    [HttpDelete("deletehistory")]
+    public ActionResult DeleteHistory()
+    {
+        _historyStoreService.DeleteHistory();
+        return Ok("History deleted successfully");
     }
 }

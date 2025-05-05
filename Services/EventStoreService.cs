@@ -1,4 +1,7 @@
-﻿using System.Collections.Concurrent;
+﻿using Microsoft.Graph.Models;
+using ParkAccessServiceApi.Class;
+using System.Collections.Concurrent;
+using System.Text.Json;
 
 public class EventStoreService
 {
@@ -15,7 +18,12 @@ public class EventStoreService
 
     public void UpdateEvents(IEnumerable<EventData> events)
     {
-        _eventStore.Clear();
+        var newEvents = new List<EventData>();
+        var removedEvents = new List<EventData>();
+
+        var oldEventIds = _eventStore.Keys.ToHashSet();
+        var incomingEventIds = new HashSet<string>();
+
         foreach (var evt in events)
         {
             if (evt.Start.HasValue)
@@ -26,7 +34,50 @@ public class EventStoreService
             {
                 evt.End = evt.End.Value.AddHours(2);
             }
-            _eventStore.AddOrUpdate(evt.Id, evt, (key, existing) => evt);
+
+            incomingEventIds.Add(evt.Id);
+
+            if (!_eventStore.ContainsKey(evt.Id))
+            {
+                newEvents.Add(evt);
+            }
+        }
+
+        foreach (var oldId in oldEventIds)
+        {
+            if (!incomingEventIds.Contains(oldId))
+            {
+                if (_eventStore.TryGetValue(oldId, out var removedEvt))
+                {
+                    removedEvents.Add(removedEvt);
+                }
+            }
+        }
+
+        var jsonPath = "history.json";
+        var jsonContent = File.Exists(jsonPath) ? File.ReadAllText(jsonPath) : "[]";
+        var history = JsonSerializer.Deserialize<List<History>>(jsonContent) ?? new List<History>();
+
+        foreach (var ne in newEvents)
+        {
+            history.Add(new History(DateTime.Now, $"L'évènement \"{ne.Name}\" du parking \"{ne.ParkingMail}\" a été ajouté avec succès"));
+        }
+        foreach (var re in removedEvents)
+        {
+            history.Add(new History(DateTime.Now, $"L'évènement \"{re.Name}\" du parking \"{re.ParkingMail}\" a été supprimé avec succès"));
+        }
+
+        var updatedJson = JsonSerializer.Serialize(history, new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        });
+        File.WriteAllText(jsonPath, updatedJson);
+
+        _eventStore.Clear();
+        foreach (var evt in events)
+        {
+            _eventStore[evt.Id] = evt;
         }
     }
 
@@ -43,47 +94,11 @@ public class EventStoreService
         }
     }
 
-    public EventData? GetNextEvent()
-    {
-        try
-        {
-            var now = DateTimeOffset.UtcNow;
-
-            var currentEvent = _eventStore.Values
-                .FirstOrDefault(e => e.Start.HasValue && e.End.HasValue &&
-                                    e.Start.Value <= now && e.End.Value >= now);
-
-            if (currentEvent != null)
-            {
-                return currentEvent;
-            }
-
-            var nextEvent = _eventStore.Values
-                .Where(e => e.Start.HasValue && e.Start.Value > now)
-                .OrderBy(e => e.Start!.Value)
-                .FirstOrDefault();
-
-            if (nextEvent != null)
-            {
-                return nextEvent;
-            }
-
-            return null;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error retrieving event.");
-            return null;
-        }
-    }
-
     public void AddNewEvent(EventData newEvent)
     {
         try
         {
             _graphService.NewCalendarEventAsync(newEvent).Wait();
-
-            _eventStore.TryAdd(newEvent.Id, newEvent);
         }
         catch (Exception ex)
         {

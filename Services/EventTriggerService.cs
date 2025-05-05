@@ -1,4 +1,7 @@
-﻿using ParkAccessServiceApi.Settings;
+﻿using Microsoft.Kiota.Abstractions;
+using ParkAccessServiceApi.Class;
+using ParkAccessServiceApi.Settings;
+using System.Text.Json;
 
 public class EventTriggerService : BackgroundService
 {
@@ -6,6 +9,7 @@ public class EventTriggerService : BackgroundService
     private readonly EventStoreService _eventStoreService;
     private readonly ILogger<EventTriggerService> _logger;
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly Dictionary<string, string> _lastStatusPerEvent = new();
     private string? status;
 
     public EventTriggerService(ApiSettings apiSettings, EventStoreService eventStoreService, IHttpClientFactory httpClientFactory, ILogger<EventTriggerService> logger)
@@ -50,7 +54,7 @@ public class EventTriggerService : BackgroundService
                 _logger.LogError(ex, "Error while checking events");
             }
 
-            await Task.Delay(_apiSettings.IntervalToControllIncomingEventInSeconds, stoppingToken);
+            await Task.Delay(_apiSettings.IntervalToControllIncomingEventInSeconds * 1000, stoppingToken);
         }
     }
 
@@ -62,6 +66,23 @@ public class EventTriggerService : BackgroundService
 
             string url = $"http://{evt.ParkingIp}/relay/0?turn=" + status.ToString();
             HttpResponseMessage response = await client.GetAsync(url);
+
+            if (!_lastStatusPerEvent.TryGetValue(evt.Id, out var lastStatus) || lastStatus != status)
+            {
+                var json = File.ReadAllText("history.json");
+                var history = JsonSerializer.Deserialize<List<History>>(json) ?? new List<History>();
+                var newHistory = new History(DateTime.Now, $"L'évènement \"{evt.Name}\" a déclenché le parking : {evt.ParkingMail} => {status}");
+                history.Add(newHistory);
+
+                var newJson = JsonSerializer.Serialize(history, new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                });
+                File.WriteAllText("history.json", newJson);
+
+                _lastStatusPerEvent[evt.Id] = status;
+            }
         }
         catch (Exception ex)
         {
