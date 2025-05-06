@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "CalendarController",
+    "Method": "AddHistory",
+    "RelativePath": "api/calendar/addhistory",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "description",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CalendarController",
     "Method": "AddParking",
     "RelativePath": "api/calendar/addparking",
     "HttpMethod": "POST",
@@ -96,7 +112,7 @@
   {
     "ContainingType": "CalendarController",
     "Method": "GetHistory",
-    "RelativePath": "api/calendar/gethistory",
+    "RelativePath": "api/calendar/history",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

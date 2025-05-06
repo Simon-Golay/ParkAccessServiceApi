@@ -52,6 +52,13 @@ public class CalendarController : ControllerBase
         return Ok("Parking added successfully.");
     }
 
+    [HttpPost("addhistory")]
+    public async Task<IActionResult> AddHistory([FromBody] string description)
+    {
+        await _historyStoreService.AddNewHistory(description);
+        return Ok("History added successfully.");
+    }
+
     [HttpDelete("deleteevent/{name}")]
     public ActionResult DeleteEvent(string name)
     {
