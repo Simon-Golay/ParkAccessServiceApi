@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
+using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using ParkAccessServiceApi.Settings;
 
@@ -39,6 +41,15 @@ builder.Services.AddSwaggerGen(c =>
             new string[] { }
         }
     });
+});
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireParkingManagerRole", policy =>
+        policy.RequireRole("ParkingManager")); // nom du rôle défini dans Azure AD
 });
 
 builder.Services.AddSingleton<GraphService>();

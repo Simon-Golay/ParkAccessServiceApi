@@ -24,17 +24,8 @@ public class CalendarService : BackgroundService
         {
             try
             {
-                string _url = $"{_apiSettings.BaseUrl}/parkings";
-                var request = new HttpRequestMessage(HttpMethod.Get, _url);
-                request.Headers.Add("ApiKey", _apiSettings.ApiKey);
-
-                HttpResponseMessage response = await _httpClient.SendAsync(request, stoppingToken);
-
-                response.EnsureSuccessStatusCode();
-                string json = await response.Content.ReadAsStringAsync();
-
-                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                var parkings = JsonSerializer.Deserialize<List<ParkingData>>(json, options);
+                var json = File.ReadAllText("parkings.json");
+                var parkings = JsonSerializer.Deserialize<List<ParkingData>>(json) ?? new List<ParkingData>();
 
                 if (parkings != null)
                 {

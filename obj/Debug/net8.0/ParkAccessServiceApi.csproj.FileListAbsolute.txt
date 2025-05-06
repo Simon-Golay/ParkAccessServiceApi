@@ -157,3 +157,15 @@ C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\parkings.json
 C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\obj\Debug\net8.0\ParkAccessServiceApi.sourcelink.json
 C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\history.json
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Azure.Security.KeyVault.Certificates.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Azure.Security.KeyVault.Secrets.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Microsoft.Identity.Abstractions.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Microsoft.Identity.Web.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Microsoft.Identity.Web.Certificate.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Microsoft.Identity.Web.Certificateless.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Microsoft.Identity.Web.Diagnostics.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Microsoft.Identity.Web.TokenAcquisition.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Microsoft.Identity.Web.TokenCache.dll
+C:\Users\cp-23sig\Desktop\ParkAccessServiceApi\bin\Debug\net8.0\Microsoft.IdentityModel.LoggingExtensions.dll

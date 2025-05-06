@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[1.13.2, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[9.0.3, )"
@@ -64,7 +68,11 @@
             },
             "Microsoft.Identity.Client": {
               "target": "Package",
-              "version": "[4.70.0, )"
+              "version": "[4.71.1, )"
+            },
+            "Microsoft.Identity.Web": {
+              "target": "Package",
+              "version": "[2.19.1, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

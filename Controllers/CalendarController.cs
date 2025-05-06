@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ParkAccessServiceApi.Class;
 
+[Authorize(Policy = "RequireParkingManagerRole")]
 [Route("api/calendar")]
 [ApiController]
 public class CalendarController : ControllerBase
@@ -27,8 +29,8 @@ public class CalendarController : ControllerBase
     [HttpGet("parkings")]
     public ActionResult<IEnumerable<EventData>> GetParkings()
     {
-        var events = _pargingStoreService.GetAllParkings();
-        return Ok(events);
+        var parkings = _pargingStoreService.GetAllParkings();
+        return Ok(parkings);
     }
 
     [HttpGet("history")]
